@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact CLIL for Veterinarians">
+    <title>Contact - CLIL for Veterinarians</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <div class="logo-placeholder">CLIL</div>
+                <div class="site-title">CLIL for Veterinarians</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="teachers.html">For Teachers</a></li>
+                    <li><a href="students.html">For Students</a></li>
+                    <li><a href="glossary.html">Glossary</a></li>
+                    <li><a href="blog.html">News</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="padding-top: 3rem;">
+            <div class="container">
+                <div class="section-title">
+                    <h1>Contact Us</h1>
+                    <p>Get in touch with us for questions, feedback, or support</p>
+                </div>
+
+                <div class="grid grid-2" style="gap: 3rem; margin-top: 3rem;">
+                    <!-- Contact Form -->
+                    <div>
+                        <div class="card">
+                            <h2 style="margin-bottom: 1.5rem;">Send us a Message</h2>
+                            <form id="contactForm">
+                                <div class="form-success">
+                                    Thank you for your message! We'll get back to you soon.
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                    <div class="form-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                    <div class="form-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subject">Subject *</label>
+                                    <input type="text" id="subject" name="subject" required>
+                                    <div class="form-error"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Message *</label>
+                                    <textarea id="message" name="message" required></textarea>
+                                    <div class="form-error"></div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div>
+                        <div class="card">
+                            <h2 style="margin-bottom: 1.5rem;">Contact Information</h2>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 1.5rem;">📧</span> Email
+                                </h3>
+                                <p style="margin-left: 2rem;">
+                                    <a href="mailto:info@clilveterinarians.com" style="color: var(--primary-blue);">info@clilveterinarians.com</a>
+                                </p>
+                            </div>
+
+                            <div style="margin-bottom: 2rem;">
+                                <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 1.5rem;">✈️</span> Telegram
+                                </h3>
+                                <p style="margin-left: 2rem;">
+                                    <a href="https://t.me/clilvet" target="_blank" style="color: var(--primary-blue);">@clilvet</a>
+                                </p>
+                            </div>
+
+                            <div style="margin-bottom: 2rem;">
+                                <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 1.5rem;">💬</span> WhatsApp
+                                </h3>
+                                <p style="margin-left: 2rem;">
+                                    <a href="https://wa.me/1234567890" target="_blank" style="color: var(--primary-blue);">+1 (234) 567-890</a>
+                                </p>
+                            </div>
+
+                            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--border-color);">
+                                <h3 style="margin-bottom: 1rem;">Follow Us</h3>
+                                <div class="social-icons" style="justify-content: flex-start;">
+                                    <a href="#" class="social-icon" aria-label="LinkedIn" style="background-color: var(--primary-blue); color: white;">in</a>
+                                    <a href="#" class="social-icon" aria-label="Facebook" style="background-color: var(--primary-blue); color: white;">f</a>
+                                    <a href="#" class="social-icon" aria-label="Telegram" style="background-color: var(--primary-blue); color: white;">t</a>
+                                    <a href="#" class="social-icon" aria-label="WhatsApp" style="background-color: var(--primary-green); color: white;">w</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Map (Optional) -->
+                        <div class="card" style="margin-top: 2rem;">
+                            <h3 style="margin-bottom: 1rem;">Location</h3>
+                            <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #2563eb, #10b981); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white;">
+                                <p>Google Maps Embed Placeholder</p>
+                            </div>
+                            <p style="margin-top: 1rem; color: var(--text-light); text-align: center;">
+                                Address: [Your Address Here]<br>
+                                City, Country
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div style="margin-top: 4rem;">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+                    <div class="grid grid-2" style="gap: 1.5rem;">
+                        <div class="card">
+                            <h4>How can I access the course materials?</h4>
+                            <p>All course materials are freely available on this website. Simply navigate to the Courses section to access modules, or visit Resources to download materials.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Is this platform suitable for beginners?</h4>
+                            <p>Yes, the platform is designed for students at various levels. Each module includes scaffolding and support materials to help learners at different proficiency levels.</p>
+                        </div>
+                        <div class="card">
+                            <h4>Can I use these materials for teaching?</h4>
+                            <p>Absolutely! The For Teachers section provides lesson plans, methodological recommendations, and assessment tools specifically designed for educators.</p>
+                        </div>
+                        <div class="card">
+                            <h4>How often is new content added?</h4>
+                            <p>We regularly update the platform with new resources, exercises, and content. Check the News section for the latest updates and announcements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About CLIL</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="research.html">Research</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>For Users</h3>
+                    <ul>
+                        <li><a href="teachers.html">For Teachers</a></li>
+                        <li><a href="students.html">For Students</a></li>
+                        <li><a href="glossary.html">Glossary</a></li>
+                        <li><a href="blog.html">News & Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+                        <a href="#" class="social-icon" aria-label="Facebook">f</a>
+                        <a href="#" class="social-icon" aria-label="Telegram">t</a>
+                        <a href="#" class="social-icon" aria-label="WhatsApp">w</a>
+                    </div>
+                    <p style="margin-top: 1rem; color: rgba(255, 255, 255, 0.8);">
+                        Email: info@clilveterinarians.com<br>
+                        Telegram: @clilvet<br>
+                        WhatsApp: +1234567890
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CLIL for Veterinarians. All rights reserved.</p>
+                <p class="author-signature">Created by Bekniyozova Zarina</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
