@@ -49,19 +49,14 @@
 
                 <!-- Search Bar -->
                 <div class="search-container">
-                    <input type="text" id="glossarySearch" class="search-bar" placeholder="Search for a term...">
+                    <input type="text" id="glossarySearch" class="search-bar" placeholder="Search for a term, definition, or translation...">
                 </div>
 
                 <!-- Category Filter -->
                 <div style="margin-bottom: 2rem;">
                     <label for="categoryFilter" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Filter by Category:</label>
-                    <select id="categoryFilter" class="form-group" style="width: 100%; max-width: 300px; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px;">
+                    <select id="categoryFilter" style="width: 100%; max-width: 320px; padding: 0.875rem; border: 2px solid var(--border-color); border-radius: 8px;">
                         <option value="all">All Categories</option>
-                        <option value="anatomy">Anatomy</option>
-                        <option value="procedures">Procedures</option>
-                        <option value="diseases">Diseases</option>
-                        <option value="diagnostics">Diagnostics</option>
-                        <option value="treatment">Treatment</option>
                     </select>
                 </div>
 
@@ -96,112 +91,8 @@
                 </div>
 
                 <!-- Glossary Terms -->
-                <div class="glossary-grid">
-                    <div class="glossary-term" data-category="anatomy" data-letter="a">
-                        <h3>Abdomen</h3>
-                        <p class="definition">The part of the body between the chest and pelvis, containing the digestive organs.</p>
-                        <p class="example">The veterinarian examined the dog's abdomen for signs of bloating.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="procedures" data-letter="a">
-                        <h3>Anesthesia</h3>
-                        <p class="definition">A medical procedure that induces a temporary loss of sensation or consciousness, used during surgery.</p>
-                        <p class="example">The cat was placed under general anesthesia before the surgical procedure.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="anatomy" data-letter="b">
-                        <h3>Bone</h3>
-                        <p class="definition">The hard, rigid form of connective tissue that makes up the skeleton of vertebrates.</p>
-                        <p class="example">The X-ray revealed a fracture in the dog's leg bone.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="diagnostics" data-letter="b">
-                        <h3>Biopsy</h3>
-                        <p class="definition">The removal and examination of tissue, cells, or fluids from the living body for diagnostic purposes.</p>
-                        <p class="example">A biopsy was performed to determine if the growth was malignant.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="procedures" data-letter="c">
-                        <h3>Castration</h3>
-                        <p class="definition">The surgical removal of the testicles in male animals; also called neutering or orchiectomy.</p>
-                        <p class="example">The veterinarian recommended castration to prevent unwanted behaviors and health issues.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="anatomy" data-letter="c">
-                        <h3>Cranial</h3>
-                        <p class="definition">Relating to or situated near the head or cranium; toward the head end of the body.</p>
-                        <p class="example">The cranial region of the animal showed no signs of trauma.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="diseases" data-letter="d">
-                        <h3>Distemper</h3>
-                        <p class="definition">A highly contagious viral disease affecting dogs, characterized by fever, respiratory and neurological symptoms.</p>
-                        <p class="example">Vaccination is essential to protect dogs from distemper.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="diagnostics" data-letter="e">
-                        <h3>Endoscopy</h3>
-                        <p class="definition">A medical procedure using an endoscope (a flexible tube with a camera) to examine internal organs.</p>
-                        <p class="example">The veterinarian used endoscopy to examine the dog's gastrointestinal tract.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="treatment" data-letter="f">
-                        <h3>Fracture</h3>
-                        <p class="definition">A break or crack in a bone, usually caused by trauma or disease.</p>
-                        <p class="example">The cat's leg fracture required surgical repair with pins and plates.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="diseases" data-letter="h">
-                        <h3>Heartworm</h3>
-                        <p class="definition">A parasitic worm that lives in the heart and blood vessels of infected animals, transmitted by mosquitoes.</p>
-                        <p class="example">Monthly heartworm prevention is recommended for all dogs in endemic areas.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="procedures" data-letter="o">
-                        <h3>Ovariohysterectomy</h3>
-                        <p class="definition">Surgical removal of the ovaries and uterus in female animals; commonly called spaying.</p>
-                        <p class="example">The veterinarian performed an ovariohysterectomy to prevent future health issues.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="diagnostics" data-letter="r">
-                        <h3>Radiography</h3>
-                        <p class="definition">The process of taking X-ray images to visualize internal structures of the body.</p>
-                        <p class="example">Radiography revealed a foreign object in the dog's stomach.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="procedures" data-letter="s">
-                        <h3>Spaying</h3>
-                        <p class="definition">The surgical removal of the ovaries and uterus in female animals; also called ovariohysterectomy.</p>
-                        <p class="example">Spaying is recommended to prevent unwanted pregnancies and certain diseases.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="diagnostics" data-letter="u">
-                        <h3>Ultrasonography</h3>
-                        <p class="definition">A diagnostic imaging technique using high-frequency sound waves to visualize internal structures.</p>
-                        <p class="example">Ultrasonography was used to examine the cat's abdominal organs.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-
-                    <div class="glossary-term" data-category="anatomy" data-letter="v">
-                        <h3>Ventral</h3>
-                        <p class="definition">Relating to or situated on the underside or belly side of an animal; opposite of dorsal.</p>
-                        <p class="example">The incision was made on the ventral surface of the abdomen.</p>
-                        <button class="btn btn-outline" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.875rem;">🔊 Pronounce</button>
-                    </div>
-                </div>
+                <div id="glossaryStatus" style="margin-bottom: 1.5rem; color: var(--text-light);"></div>
+                <div class="glossary-grid" id="glossaryGrid" aria-live="polite"></div>
             </div>
         </section>
     </main>
@@ -245,7 +136,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 CLIL for Veterinarians. All rights reserved.</p>
+                <p>&copy; 2025 CLIL for Veterinarians. All rights reserved.</p>
                 <p class="author-signature">Created by Bekniyozova Zarina</p>
             </div>
         </div>
@@ -253,52 +144,6 @@
 
     <button class="back-to-top" aria-label="Back to top">↑</button>
     <script src="js/script.js"></script>
-    <script>
-        // Category filter functionality
-        const categoryFilter = document.getElementById('categoryFilter');
-        if (categoryFilter) {
-            categoryFilter.addEventListener('change', function() {
-                const selectedCategory = this.value;
-                const terms = document.querySelectorAll('.glossary-term');
-                
-                terms.forEach(term => {
-                    if (selectedCategory === 'all' || term.getAttribute('data-category') === selectedCategory) {
-                        term.style.display = 'block';
-                    } else {
-                        term.style.display = 'none';
-                    }
-                });
-            });
-        }
-
-        // Alphabet button functionality
-        const alphabetButtons = document.querySelectorAll('.alphabet-btn');
-        alphabetButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const letter = this.getAttribute('data-letter');
-                const terms = document.querySelectorAll('.glossary-term');
-                
-                // Remove active class from all buttons
-                alphabetButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Filter terms
-                terms.forEach(term => {
-                    if (term.getAttribute('data-letter') === letter) {
-                        term.style.display = 'block';
-                    } else {
-                        term.style.display = 'none';
-                    }
-                });
-                
-                // Clear search
-                const searchInput = document.getElementById('glossarySearch');
-                if (searchInput) {
-                    searchInput.value = '';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
 

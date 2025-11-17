@@ -631,11 +631,40 @@ main {
     margin-bottom: 0.75rem;
 }
 
+.glossary-term .translation {
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
 .glossary-term .example {
     color: var(--text-light);
     font-style: italic;
     border-left: 3px solid var(--primary-green);
     padding-left: 1rem;
+}
+
+.term-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.category-pill {
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
+    padding: 0.25rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pronunciation-btn {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.85rem;
 }
 
 /* ===== Quiz ===== */

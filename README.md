@@ -62,6 +62,26 @@ clil/
 2. All pages are linked and ready to use
 3. No build process or dependencies required - pure HTML, CSS, and JavaScript
 
+## Deployment
+
+### Deploy to Netlify
+
+1. Log in to [Netlify](https://www.netlify.com/) and choose **Add new site → Import an existing project**
+2. Connect your GitHub account and select the `clil` repository
+3. Use these build settings:
+   - **Build command:** *(leave empty – static site)*
+   - **Publish directory:** `.` (project root)
+4. Click **Deploy site**. Netlify will generate a live URL such as `https://your-site-name.netlify.app`
+5. (Optional) Rename the site under **Site settings → Domain management**
+
+### Manual drag-and-drop deployment
+
+1. Run a local build/asset optimization if needed (not required here)
+2. Zip or drag the entire project folder (including all HTML/CSS/JS files and `gloassary.txt`)
+3. Upload it to [https://app.netlify.com/drop](https://app.netlify.com/drop) and wait for the deployment to finish
+
+> **Important:** Keep `gloassary.txt` in the project root. The glossary page parses this file at runtime to load all veterinary terminology. Any updates to the terminology list only require editing `gloassary.txt` and redeploying.
+
 ## Browser Compatibility
 
 - Chrome (latest)

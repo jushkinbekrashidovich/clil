@@ -146,51 +146,248 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== Glossary Search =====
+    // ===== Glossary Data Handling =====
+    const glossaryGrid = document.getElementById('glossaryGrid');
+    const glossaryStatus = document.getElementById('glossaryStatus');
     const glossarySearch = document.getElementById('glossarySearch');
-    if (glossarySearch) {
-        glossarySearch.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const terms = document.querySelectorAll('.glossary-term');
-            
-            terms.forEach(term => {
-                const termText = term.textContent.toLowerCase();
-                if (termText.includes(searchTerm)) {
-                    term.style.display = 'block';
-                } else {
-                    term.style.display = 'none';
-                }
+    const categoryFilter = document.getElementById('categoryFilter');
+    const alphabetButtons = document.querySelectorAll('.alphabet-btn');
+
+    const glossaryState = {
+        data: [],
+        filters: {
+            search: '',
+            category: 'all',
+            letter: 'all'
+        }
+    };
+
+    const fallbackGlossary = [
+        { term: 'Abdominal', definition: 'Relating to the abdomen, the part of the body between the chest and pelvis.', translation: 'Qorin bo\'shlig\'iga oid, ko\'krak va tos o\'rtasidagi qism.', category: 'Anatomy', letter: 'A' },
+        { term: 'Abscess', definition: 'A localized collection of pus in tissues, organs, or confined spaces.', translation: 'To\'qimalar yoki organlarda yiring to\'planishi.', category: 'Disease', letter: 'A' },
+        { term: 'Anesthesia', definition: 'Loss of sensation, especially pain, induced by drugs.', translation: 'Dori ta’sirida sezgi, ayniqsa og\'riqning yo\'qolishi.', category: 'Treatment', letter: 'A' },
+        { term: 'Antibiotic', definition: 'A medicine that inhibits the growth of or destroys microorganisms.', translation: 'Mikroorganizmlarni o\'ldiradigan yoki o\'sishini to\'xtatadigan dori.', category: 'Treatment', letter: 'A' },
+        { term: 'Bacteria', definition: 'Microscopic single-celled organisms, some of which can cause disease.', translation: 'Ba\'zilari kasallik keltiradigan mikroskopik bir hujayrali organizmlar.', category: 'Microbiology', letter: 'B' },
+        { term: 'Biopsy', definition: 'Removal and examination of tissue from the living body for diagnosis.', translation: 'Tirik to\'qimani olib tashlab tekshirish jarayoni.', category: 'Diagnosis', letter: 'B' },
+        { term: 'Castration', definition: 'Surgical removal of the testicles in male animals.', translation: 'Erkak hayvonlarda urug\'donlarni jarrohlik yo\'li bilan olib tashlash.', category: 'Surgery', letter: 'C' },
+        { term: 'Dehydration', definition: 'Condition in which the body loses more water than it takes in.', translation: 'Organizm qabul qilganidan ko\'proq suyuqlik yo\'qotishi.', category: 'Disease', letter: 'D' },
+        { term: 'Euthanasia', definition: 'Painless killing of an animal suffering from an incurable disease.', translation: 'Davolanmaydigan kasallikdan azob chekuvchi hayvonni og\'riqsiz o\'ldirish.', category: 'Treatment', letter: 'E' },
+        { term: 'Fracture', definition: 'A break or crack in a bone.', translation: 'Suyakdagi sinish yoki yoriq.', category: 'Injury', letter: 'F' }
+    ];
+
+    if (glossaryGrid) {
+        loadGlossaryData();
+
+        if (glossarySearch) {
+            glossarySearch.addEventListener('input', (event) => {
+                glossaryState.filters.search = event.target.value.toLowerCase();
+                applyGlossaryFilters();
             });
+        }
+
+        if (categoryFilter) {
+            categoryFilter.addEventListener('change', (event) => {
+                glossaryState.filters.category = event.target.value;
+                applyGlossaryFilters();
+            });
+        }
+
+        alphabetButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const letter = this.dataset.letter.toLowerCase();
+                if (glossaryState.filters.letter === letter) {
+                    glossaryState.filters.letter = 'all';
+                    this.classList.remove('active');
+                } else {
+                    glossaryState.filters.letter = letter;
+                    alphabetButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                }
+
+                if (glossarySearch) {
+                    glossarySearch.value = '';
+                    glossaryState.filters.search = '';
+                }
+
+                applyGlossaryFilters();
+            });
+        });
+
+        glossaryGrid.addEventListener('click', (event) => {
+            const pronounceBtn = event.target.closest('.pronunciation-btn');
+            if (pronounceBtn) {
+                const term = pronounceBtn.closest('.glossary-term').querySelector('h3').textContent;
+                speakTerm(term);
+            }
         });
     }
 
-    // ===== Alphabet Navigation =====
-    const alphabetButtons = document.querySelectorAll('.alphabet-btn');
-    alphabetButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const letter = this.textContent.toLowerCase();
-            const terms = document.querySelectorAll('.glossary-term');
-            
-            // Remove active class from all buttons
-            alphabetButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter terms
-            terms.forEach(term => {
-                const termTitle = term.querySelector('h3').textContent.toLowerCase();
-                if (termTitle.startsWith(letter)) {
-                    term.style.display = 'block';
-                } else {
-                    term.style.display = 'none';
+    function loadGlossaryData() {
+        if (!glossaryGrid) return;
+        updateGlossaryStatus('Loading glossary terms...');
+
+        fetch('gloassary.txt')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Unable to fetch glossary data');
                 }
+                return response.text();
+            })
+            .then(text => {
+                const parsedTerms = parseGlossaryData(text);
+                glossaryState.data = parsedTerms.length ? parsedTerms : fallbackGlossary;
+
+                if (!parsedTerms.length) {
+                    updateGlossaryStatus('Using fallback glossary dataset. Please ensure gloassary.txt is populated.', true);
+                } else {
+                    updateGlossaryStatus(`${glossaryState.data.length} terms available.`);
+                }
+
+                populateCategoryOptions(glossaryState.data);
+                applyGlossaryFilters();
+            })
+            .catch(error => {
+                console.error('Glossary load error:', error);
+                glossaryState.data = fallbackGlossary;
+                populateCategoryOptions(glossaryState.data);
+                applyGlossaryFilters();
+                updateGlossaryStatus('Unable to load gloassary.txt. Showing fallback glossary dataset.', true);
             });
-            
-            // Clear search if active
-            if (glossarySearch) {
-                glossarySearch.value = '';
+    }
+
+    function parseGlossaryData(text) {
+        const pattern = /TermModel\(([\s\S]*?)\)/g;
+        const terms = [];
+        let match;
+
+        while ((match = pattern.exec(text)) !== null) {
+            const block = match[1];
+            const term = extractField(block, 'englishTerm');
+            if (!term) continue;
+
+            const definition = extractField(block, 'definition');
+            const translation = extractField(block, 'uzbekTranslation');
+            const category = extractField(block, 'category') || 'General';
+
+            terms.push({
+                term,
+                definition,
+                translation,
+                category,
+                letter: term.charAt(0).toUpperCase()
+            });
+        }
+
+        const uniqueTerms = [];
+        const seenTerms = new Set();
+
+        terms.forEach(item => {
+            const key = item.term.toLowerCase();
+            if (!seenTerms.has(key)) {
+                seenTerms.add(key);
+                uniqueTerms.push(item);
             }
         });
-    });
+
+        return uniqueTerms.sort((a, b) => a.term.localeCompare(b.term));
+    }
+
+    function extractField(block, fieldName) {
+        const regex = new RegExp(`${fieldName}:\\s*'([^']*)'`, 'i');
+        const match = block.match(regex);
+        return match ? match[1].replace(/\\'/g, '\'').trim() : '';
+    }
+
+    function populateCategoryOptions(terms) {
+        if (!categoryFilter) return;
+        categoryFilter.querySelectorAll('option:not([value="all"])').forEach(option => option.remove());
+
+        const categories = [...new Set(terms.map(term => term.category).filter(Boolean))]
+            .sort((a, b) => a.localeCompare(b));
+
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.toLowerCase();
+            option.textContent = category;
+            categoryFilter.appendChild(option);
+        });
+    }
+
+    function applyGlossaryFilters() {
+        if (!glossaryGrid || !glossaryState.data.length) return;
+        const { search, category, letter } = glossaryState.filters;
+
+        const filtered = glossaryState.data.filter(item => {
+            const matchesSearch = !search ||
+                item.term.toLowerCase().includes(search) ||
+                (item.definition && item.definition.toLowerCase().includes(search)) ||
+                (item.translation && item.translation.toLowerCase().includes(search));
+
+            const matchesCategory = category === 'all' || item.category.toLowerCase() === category;
+            const matchesLetter = letter === 'all' || item.letter.toLowerCase() === letter;
+
+            return matchesSearch && matchesCategory && matchesLetter;
+        });
+
+        renderGlossaryTerms(filtered);
+
+        if (glossaryStatus) {
+            const total = glossaryState.data.length;
+            const text = filtered.length === total
+                ? `${total} terms available.`
+                : `${filtered.length} of ${total} terms match your filters.`;
+            glossaryStatus.textContent = text;
+            glossaryStatus.classList.remove('glossary-status-error');
+        }
+    }
+
+    function renderGlossaryTerms(terms) {
+        if (!glossaryGrid) return;
+
+        if (!terms.length) {
+            glossaryGrid.innerHTML = '<p class="text-center" style="color: var(--text-light);">No terms match your filters yet.</p>';
+            return;
+        }
+
+        const fragment = document.createDocumentFragment();
+
+        terms.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'glossary-term';
+            card.setAttribute('data-letter', item.letter.toLowerCase());
+            card.setAttribute('data-category', item.category.toLowerCase());
+            card.innerHTML = `
+                <div class="term-meta">
+                    <span class="category-pill">${item.category || 'General'}</span>
+                    <button class="btn btn-outline pronunciation-btn" type="button" aria-label="Pronounce ${item.term}">
+                        🔊 Pronounce
+                    </button>
+                </div>
+                <h3>${item.term}</h3>
+                <p class="definition">${item.definition || 'Definition unavailable.'}</p>
+                <p class="translation"><strong>Uzbek:</strong> ${item.translation || 'Tarjima mavjud emas.'}</p>
+            `;
+            fragment.appendChild(card);
+        });
+
+        glossaryGrid.innerHTML = '';
+        glossaryGrid.appendChild(fragment);
+    }
+
+    function updateGlossaryStatus(message, isError = false) {
+        if (!glossaryStatus) return;
+        glossaryStatus.textContent = message;
+        glossaryStatus.style.color = isError ? '#dc2626' : 'var(--text-light)';
+    }
+
+    function speakTerm(term) {
+        if (!('speechSynthesis' in window)) {
+            alert('Speech synthesis is not supported in this browser.');
+            return;
+        }
+        const utterance = new SpeechSynthesisUtterance(term);
+        speechSynthesis.speak(utterance);
+    }
 
     // ===== Quiz Functionality =====
     const quizOptions = document.querySelectorAll('.quiz-option');
